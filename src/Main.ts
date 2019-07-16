@@ -3,13 +3,17 @@
  * we dont have one
  */
 
-import { RandomTestFunction, rollTheDie, kickTheScrub } from './Functions'
+import { kickTheScrub, RandomTestFunction, rollTheDie } from './Functions'
 
 import * as Discord from 'discord.js'
+import * as fs from 'fs'
+import * as path from 'path'
 
-const clientToken = 'idiot'
+const config: Config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../env.json')).toString('utf-8'))
 
-export const serverID = '126066448635396096'
+const clientToken = config.clientToken
+
+export const serverID = config.serverID
 export const deleteTimeout = 15
 
 // Create new discord bot client
@@ -34,7 +38,7 @@ bot.on('message', (message: Discord.Message) => {
   if (message.content.startsWith('!')) {
     message.delete()
 
-    const command: string[] = message.content.split(" ")
+    const command: string[] = message.content.split(' ')
     command[0] = command[0].substring(1).toLowerCase()
 
     console.log(`${message.author.username}: ${message.content}`)

@@ -116,3 +116,5 @@ typings/
 bin/
 
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
+
+env.json
